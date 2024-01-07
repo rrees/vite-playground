@@ -7,7 +7,11 @@
   </head>
   <body>
     <div id="app">
-      <counter-component></counter-component>
+      <counter-component>
+        <p class="count">0</p>
+        <button class="inc-button">Increment</button>
+        <button class="dec-button">Decrement</button>
+      </counter-component>
     </div>
     <script>
       class Counter extends HTMLElement {
