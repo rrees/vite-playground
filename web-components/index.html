@@ -15,10 +15,21 @@
     </div>
     <script>
       class Counter extends HTMLElement {
+
+        connectedCallback() {
+          console.log('Connected callback firing');
+
+          [['.inc-button', () => console.log('Hello from inc')],
+            ['.dec-button', () => console.log('Hello from dec')]].forEach(([selector, callback]) => {
+            const el = this.querySelector(selector);
+
+            el.addEventListener('click', callback);
+          });
+
+        }
         constructor() {
           super();
 
-          this.innerHTML = `<p>Hello world</p>`;
         }
       }
 
