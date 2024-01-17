@@ -7,6 +7,18 @@
   </head>
   <body>
     <div id="app">
+      <h1>Counters example</h1>
+
+      <h2>Counter #1</h2>
+
+      <counter-component>
+        <p class="count">0</p>
+        <button class="inc-button">Increment</button>
+        <button class="dec-button">Decrement</button>
+      </counter-component>
+
+      <h2>Counter #2</h2>
+      
       <counter-component>
         <p class="count">0</p>
         <button class="inc-button">Increment</button>
@@ -16,15 +28,31 @@
     <script>
       class Counter extends HTMLElement {
 
+        count = 0;
+
+        render() {
+          this.querySelector('.count').innerHTML = this.count;
+        }
+
         connectedCallback() {
           console.log('Connected callback firing');
 
-          [['.inc-button', () => console.log('Hello from inc')],
-            ['.dec-button', () => console.log('Hello from dec')]].forEach(([selector, callback]) => {
+          [['.inc-button', () => {
+            console.log('Hello from inc');
+            this.count++;
+            this.render();
+          }],
+            ['.dec-button', () => {
+              console.log('Hello from dec');
+              this.count--;
+              this.render();
+            }]].forEach(([selector, callback]) => {
             const el = this.querySelector(selector);
 
             el.addEventListener('click', callback);
           });
+
+          this.render();
 
         }
         constructor() {
