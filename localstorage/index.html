@@ -5,9 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Local storage</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
+    <style>
+      body {
+        margin: auto;
+        max-width: 40rem;
+      }
+      textarea {
+        width: 100%;
+      }
+    </style>
   </head>
   <body>
-    <textarea id="content"></textarea>
+    <h1>Notepad</h1>
+
+    <textarea id="content" rows="4"></textarea>
 
     <script>
       const contentElement = document.getElementById('content');
