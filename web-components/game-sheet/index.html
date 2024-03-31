@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Game sheet - Web Components</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
+    <link rel="stylesheet" href="./game-sheet.css">
+  </head>
+  <body>
+
+    <h1>Game sheet</h1>
+
+    <game-sheet>
+      <h2>Stats</h2>
+        <ul class="plain-list">
+          <li><label>Max Health<input type="number" value="0" name="max-health" id="max-health"/></label></li>
+          <li><label>Health<input type="number" value="0" name="health" id="health"/></label></li>
+        </ul>
+      <h3>Enemy</h3>
+      <label>Health<input type="number" value="0" name="enemy-health" id="enemy-health"/></label>
+
+      <h2>Actions</h2>
+      <div class="actions">
+        <ul class="actions--list plain-list">
+          <li><button id="fight">Fight round</button></li>
+          <li><button id="move">Move forward</button></li>
+          <li><button id="roll">Roll dice</button></li>
+        </ul>
+      </div>
+
+      <h2>Results</h2>
+      <div id="action-results">
+      </div>
+
+    </game-sheet>
+
+    <script type="module" src="index.js"></script>
+
+  </body>
+</html>
