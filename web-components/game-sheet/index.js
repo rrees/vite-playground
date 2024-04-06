@@ -6,18 +6,41 @@ function displayResults(display, content) {
 	display.innerHTML = content;
 }
 
+function getButtons(component) {
+	return {
+		fightButton: component.querySelector('#fight'),
+		moveButton: component.querySelector('#move'),
+		rollButton: component.querySelector('#roll'),
+	};
+}
+
+class Character {
+
+	constructor() {
+		this.health = 1;
+		this.potions = 0;
+		this.scrolls = 0;
+		this.gold = 0;
+	}
+}
 
 class GameSheet extends HTMLElement {
 	constructor() {
 		super();
+		this.character = new Character();
+	}
+
+	render() {
+		const component = this;
+
+		const healthDisplay = component.querySelector('#health');
+		healthDisplay.value = 1;
 	}
 
 	connectedCallback() {
 		const component = this;
 
-		const fightButton = component.querySelector('#fight');
-		const moveButton = component.querySelector('#move');
-		const rollButton = component.querySelector('#roll');
+		const {fightButton, moveButton, rollButton} = getButtons(component);
 
 		const resultsDisplay = component.querySelector('#action-results');
 
@@ -25,7 +48,6 @@ class GameSheet extends HTMLElement {
 
 		fightButton.addEventListener('click', () => {
 			const resultString = resolveCombat();
-			console.log(resultString);
 			display(`<p>${resultString}</p>`);
 		});
 
@@ -35,7 +57,18 @@ class GameSheet extends HTMLElement {
 
 		rollButton.addEventListener('click', () => {
 			display(resolveDiceRoll());
-		})
+		});
+
+		[['health', '#health']].forEach(([attribute, cssId]) => {
+			const display = component.querySelector(cssId);
+
+			display.addEventListener('change', (event) => {
+				console.log(component.character);
+				this.character[attribute]= Number.parseInt(event.target.value);
+			});
+		});
+
+		this.render();
 	}
 }
 
