@@ -13,13 +13,30 @@
     <h1>Game sheet</h1>
 
     <game-sheet>
-      <h2>Stats</h2>
-        <ul class="plain-list">
-          <li><label>Max Health<input type="number" value="0" name="max-health" id="max-health"/></label></li>
-          <li><label>Health<input type="number" value="0" name="health" id="health"/></label></li>
+      <div class="character-sheet">
+        <div class="character-sheet--stats">
+          <h2>Stats</h2>
+
+          <ul class="plain-list stats">
+            <li><label>Max Health<input type="number" value="0" name="max-health" id="max-health"/></label></li>
+            <li><label>Health<input type="number" value="0" name="health" id="health"/></label></li>
+            <li><label>Intellect<input type="number" value="0" name="intellect" id="intellect"/></label></li>
+          </ul>
+        </div>
+      <div class="character-sheet--equipment">
+        <h2>Equipment</h2>
+        <ul class="plain-list equipment">
+          <li><label>Armour<input type="number" value="0" name="armour" id="armour"/></label></li>
+          <li><label>Potions<input type="number" value="0" name="potions" id="potions"/></label></li>
+          <li><label>Scrolls<input type="number" value="0" name="scrolls" id="scrolls"/></label></li>
+          <li><label>Gold<input type="number" value="0" name="gold" id="gold"/></label></li>
         </ul>
-      <h3>Enemy</h3>
-      <label>Health<input type="number" value="0" name="enemy-health" id="enemy-health"/></label>
+      </div>
+      <div class="character-sheet--enemy">
+        <h2>Enemy</h2>
+        <label>Health<input type="number" value="0" name="enemy-health" id="enemy-health"/></label>
+      </div>
+    </div>
 
       <h2>Actions</h2>
       <div class="actions">
@@ -30,7 +47,7 @@
         </ul>
       </div>
 
-      <h2>Results</h2>
+      <h3>Results</h3>
       <div id="action-results">
       </div>
 

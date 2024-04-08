@@ -3,3 +3,13 @@
 	list-style: none;
 	padding-left: 0;
 }
+
+.character-sheet {
+	display: flex;
+	column-gap: 2rem;
+}
+
+.actions--list {
+	display: flex;
+	flex-flow: row;
+}
