@@ -21,8 +21,35 @@
     <textarea id="content" rows="4"></textarea>
 
     <script>
+      const storagePrefixKey = 'rrees-storage-test-';
+      const notepadKey = `${storagePrefixKey}-notepad`;
+
       const contentElement = document.getElementById('content');
-      contentElement.addEventListener('input', (event) => { console.log(event.target.value)})
+
+      document.addEventListener("DOMContentLoaded", (event) => {
+        console.log("DOM fully loaded and parsed");
+        const notepadDataString = localStorage.getItem(notepadKey);
+
+        if(!notepadDataString) {
+          return;
+        }
+
+        const notepadData = JSON.parse(notepadDataString);
+
+        console.table(notepadData);
+
+        contentElement.value = notepadData.content;
+      });
+
+
+
+      contentElement.addEventListener('input', (event) => {
+        const notepadContent = event.target.value;
+        console.log(notepadContent);
+        localStorage.setItem(notepadKey, JSON.stringify({
+          content: notepadContent,
+        }));
+      })
     </script>
   </body>
 </html>
