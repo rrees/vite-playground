@@ -12,24 +12,25 @@ document.querySelector('#app').innerHTML = `
             <label for="pool"l>Pool</label>
             <input
               type="number" min=1 value=1
-              id="pool"/>
+              id="pool" name="pool"/>
           </div>
           
           <div class="stack">
             <label for="pool"l>Sides</label>
             <input
               type="number" min=2 value=6
-              id="sides"/>
+              id="sides" name="sides"/>
           </div>
         
           <div class="stack">
             <label for="modifier"l>Modifier</label>
               <input
                 type="number" value=0
-                id="modifier"/>
+                id="modifier" name="modifier"/>
           </div>
         </div>
         <button type="submit">Roll!</button>
+        <div id="result" class="result"></result>
     </form>
   </div>
 `
@@ -37,7 +38,15 @@ document.querySelector('#app').innerHTML = `
 document.addEventListener('submit', (event) => {
   event.preventDefault();
   console.log(event.target);
-  const formValues = new FormData(event.target);
+  const form = new FormData(event.target);
   console.log('Hello');
-  console.log(roll(1, 6, 0));
+  const result = roll(
+    Number.parseInt(form.get('pool')),
+    Number.parseInt(form.get('sides')),
+    Number.parseInt(form.get('modifier'))
+  );
+
+  console.log(result);
+
+  document.querySelector('#result').innerHTML = `${result.total}`
 });
