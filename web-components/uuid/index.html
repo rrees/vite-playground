@@ -34,14 +34,23 @@
 
       connectedCallback() {
         const component = this;
+        const display = component.querySelector('.display');
         const button = component.querySelector('.generate-uuid-button');
+        const copyButton = component.querySelector('.copy-uuid-button');
+
+        copyButton.disabled = true;
 
         button.addEventListener('click', () => {
           const uuid = self.crypto.randomUUID()
 
-
-          const display = component.querySelector('.display');
           display.innerHTML = uuid;
+
+          copyButton.disabled = false;
+        });
+
+
+        copyButton.addEventListener('click', async () => {
+          await navigator.clipboard.writeText(display.innerText);
         });
       }
     }
