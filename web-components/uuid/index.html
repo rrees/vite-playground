@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>UUID Generator - Web Components</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
+
+    <style>
+      .display {
+        font-size: 3ex;
+      }
+    </style>
+  </head>
+  <body>
+
+    <h1>UUID Generator</h1>
+
+    <uuid-generator>
+      <p class="display">Generate a UUID</p>
+      <div class="cluster">
+        <button class="generate-uuid-button">Generate</button>
+        <button class="copy-uuid-button" disabled>Copy</button>
+      </div>
+    </uuid-generator>
+
+    <script>
+      
+      class UUIDGenerator extends HTMLElement {
+      constructor() {
+        super();
+      }
+
+      connectedCallback() {
+        const component = this;
+        const button = component.querySelector('.generate-uuid-button');
+
+        button.addEventListener('click', () => {
+          const uuid = self.crypto.randomUUID()
+
+
+          const display = component.querySelector('.display');
+          display.innerHTML = uuid;
+        });
+      }
+    }
+
+     customElements.define('uuid-generator', UUIDGenerator);
+    </script>
+
+  </body>
+</html>
