@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>UUID Generator - Web Components</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
+
+    <style>
+      .display {
+        font-size: 3ex;
+      }
+    </style>
+  </head>
+  <body>
+
+    <h1>Text Copier</h1>
+
+    <textarea id="source"></textarea>
+
+    <text-copier for="source">
+      <button class="copy">Copy to clipboard</button>
+    </text-copier>
+
+    <textarea id="scratch"></textarea>
+
+    <script>
+      
+      class TextCopier extends HTMLElement {
+
+        static observedAttributes = ['for'];
+
+        constructor() {
+          super();
+          this.abortEventListeners = new AbortController();
+        }
+
+        connectedCallback() {
+          const component = this;
+          const copyButton = component.querySelector('.copy');
+
+          copyButton.addEventListener('click', async () => {
+              const sourceId = component.getAttribute('for');
+
+              // console.log(sourceId);
+
+              const source = document.querySelector(`#${sourceId}`);
+
+              // console.log(source, source.value);
+
+              await navigator.clipboard.writeText(source.value);
+            });
+        }
+    }
+
+     customElements.define('text-copier', TextCopier);
+    </script>
+
+  </body>
+</html>
