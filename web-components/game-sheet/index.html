@@ -14,24 +14,39 @@
 
     <game-sheet>
       <div class="character-sheet">
-        <div class="character-sheet--stats">
-          <h2>Stats</h2>
+        <div class="character-sheet--details cluster">
+          <label>Name <input class="full" name="name"></label>
+          <label>Class <input class="full" name="name"></label>
+        </div>
 
-          <ul class="plain-list stats">
-            <li><label>Max Health<input type="number" value="0" name="max-health" id="max-health"/></label></li>
-            <li><label>Health<input type="number" value="0" name="health" id="health"/></label></li>
-            <li><label>Intellect<input type="number" value="0" name="intellect" id="intellect"/></label></li>
+        <div class="cluster">
+          <div class="character-sheet--stats">
+            <h2>Stats</h2>
+
+            <ul class="plain-list stats">
+              <li><label>Max Health<input type="number" value="0" name="max-health" id="max-health"/></label></li>
+              <li><label>Health<input type="number" value="0" name="health" id="health"/></label></li>
+              <li><label>Intellect<input type="number" value="0" name="intellect" id="intellect"/></label></li>
+              <li><label>Experience<input type="number" value="0" name="experience" id="experience"/></label></li>
+            </ul>
+          </div>
+        <div class="character-sheet--equipment">
+          <h2>Equipment</h2>
+          <ul class="plain-list equipment">
+            <li><label>Damage<input type="number" value="0" name="damage" id="damage"/></label></li>
+            <li><label>Armour<input type="number" value="0" name="armour" id="armour"/></label></li>
+            <li><label>Potions<input type="number" value="0" name="potions" id="potions"/></label></li>
+            <li><label>Scrolls<input type="number" value="0" name="scrolls" id="scrolls"/></label></li>
+            <li><label>Gold<input type="number" value="0" name="gold" id="gold"/></label></li>
+            <li><label>Lockpicks <input type="number" value="0" name="lockpicks" id="lockpicks"></label></li>
           </ul>
         </div>
-      <div class="character-sheet--equipment">
-        <h2>Equipment</h2>
-        <ul class="plain-list equipment">
-          <li><label>Armour<input type="number" value="0" name="armour" id="armour"/></label></li>
-          <li><label>Potions<input type="number" value="0" name="potions" id="potions"/></label></li>
-          <li><label>Scrolls<input type="number" value="0" name="scrolls" id="scrolls"/></label></li>
-          <li><label>Gold<input type="number" value="0" name="gold" id="gold"/></label></li>
-        </ul>
       </div>
+
+      <div class="character-sheet--notes">
+        <label>Notes<textarea rows="3" class="full"></textarea></label>
+      </div>
+
       <div class="character-sheet--enemy">
         <h2>Enemy</h2>
         <label>Health<input type="number" value="0" name="enemy-health" id="enemy-health"/></label>

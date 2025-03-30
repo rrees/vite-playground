@@ -1,3 +1,23 @@
+:root {
+	--background-body: #f4f0ec;
+	--background: Gainsboro;
+}
+
+.cluster {
+	display: flex;
+	flex-wrap: wrap;
+	column-gap: 2rem;
+}
+
+.stack {
+	display: flex;
+	flex-direction: column;
+	row-gap: 2rem;
+}
+
+.full {
+	width: 100%;
+}
 
 .plain-list {
 	list-style: none;
@@ -7,9 +27,14 @@
 .character-sheet {
 	display: flex;
 	column-gap: 2rem;
+	flex-direction: column;
 }
 
 .actions--list {
 	display: flex;
 	flex-flow: row;
+}
+
+.character-sheet--details {
+
 }
