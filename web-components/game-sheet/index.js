@@ -11,6 +11,7 @@ function getButtons(component) {
 		fightButton: component.querySelector('#fight'),
 		moveButton: component.querySelector('#move'),
 		rollButton: component.querySelector('#roll'),
+		drinkButton: component.querySelector('#drink'),
 	};
 }
 
@@ -40,7 +41,7 @@ class GameSheet extends HTMLElement {
 	connectedCallback() {
 		const component = this;
 
-		const {fightButton, moveButton, rollButton} = getButtons(component);
+		const {fightButton, moveButton, rollButton, drinkButton} = getButtons(component);
 
 		const resultsDisplay = component.querySelector('#action-results');
 
@@ -59,14 +60,18 @@ class GameSheet extends HTMLElement {
 			display(resolveDiceRoll());
 		});
 
-		[['health', '#health']].forEach(([attribute, cssId]) => {
+		drinkButton.addEventListener('click', () => {
+			display('Drink a potion');
+		});
+
+		for (const [attribute, cssId] of [['health', '#health']]) {
 			const display = component.querySelector(cssId);
 
 			display.addEventListener('change', (event) => {
 				console.log(component.character);
 				this.character[attribute]= Number.parseInt(event.target.value);
 			});
-		});
+		}
 
 		this.render();
 	}
