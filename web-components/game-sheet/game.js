@@ -20,8 +20,18 @@ function resolveDiceRoll() {
 	return `Result: ${d(6)}`;
 }
 
+function resolveDrinkPotion(character) {
+	character.potions -= 1;
+	const potionRoll = d(6);
+
+	character.health = Math.min(character.health + potionRoll, character.maxHealth)
+
+	return `Healed ${potionRoll} health`
+}
+
 export {
 	resolveCombat,
 	resolveMovement,
 	resolveDiceRoll,
+	resolveDrinkPotion,
 }

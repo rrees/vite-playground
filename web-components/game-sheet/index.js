@@ -1,4 +1,4 @@
-import {resolveCombat, resolveMovement, resolveDiceRoll} from './game.js';
+import {resolveCombat, resolveMovement, resolveDiceRoll, resolveDrinkPotion} from './game.js';
 import { d } from './random.js';
 
 
@@ -19,6 +19,7 @@ class Character {
 
 	constructor() {
 		this.health = 1;
+		this.maxHealth = 1;
 		this.potions = 0;
 		this.scrolls = 0;
 		this.gold = 0;
@@ -32,10 +33,11 @@ class GameSheet extends HTMLElement {
 	}
 
 	render() {
-		const component = this;
+		const healthDisplay = this.querySelector('#health');
+		healthDisplay.value = this.character.health;
 
-		const healthDisplay = component.querySelector('#health');
-		healthDisplay.value = 1;
+		const potionsDisplay = this.querySelector('#potions');
+		potionsDisplay.value = this.character.potions;
 	}
 
 	connectedCallback() {
@@ -61,15 +63,24 @@ class GameSheet extends HTMLElement {
 		});
 
 		drinkButton.addEventListener('click', () => {
+			console.log(this.character.potions);
 			display('Drink a potion');
+			display(resolveDrinkPotion(this.character));
+			console.log('After', this.character);
+			this.render();
 		});
 
-		for (const [attribute, cssId] of [['health', '#health']]) {
+		for (const [attribute, cssId] of [
+			['health', '#health'],
+			['maxHealth', '#max-health'],
+			['potions', '#potions']
+		]) {
 			const display = component.querySelector(cssId);
 
 			display.addEventListener('change', (event) => {
-				console.log(component.character);
+				console.log('Before', component.character);
 				this.character[attribute]= Number.parseInt(event.target.value);
+				console.log('After', component.character);
 			});
 		}
 
