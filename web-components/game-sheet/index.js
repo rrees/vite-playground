@@ -1,4 +1,4 @@
-import {resolveCombat, resolveMovement, resolveDiceRoll, resolveDrinkPotion} from './game.js';
+import {resolveCombat, resolveMovement, resolveDiceRoll, resolveDrinkPotion, resolveScroll} from './game.js';
 import { d } from './random.js';
 
 
@@ -20,9 +20,11 @@ class Character {
 	constructor() {
 		this.health = 1;
 		this.maxHealth = 1;
+		this.intellect = 0;
 		this.potions = 0;
 		this.scrolls = 0;
 		this.gold = 0;
+		this.lockpicks = 0;
 	}
 }
 
@@ -38,6 +40,17 @@ class GameSheet extends HTMLElement {
 
 		const potionsDisplay = this.querySelector('#potions');
 		potionsDisplay.value = this.character.potions;
+
+		for(const [attribute, cssId] of [
+			['intellect', '#intellect'],
+			['scrolls', '#scrolls'],
+			['lockpicks', '#lockpicks'],
+			['maxHealth', '#max-health'],
+		]) {
+			const element = this.querySelector(cssId);
+			element.value = this.character[attribute];
+		}
+
 	}
 
 	connectedCallback() {
@@ -63,17 +76,23 @@ class GameSheet extends HTMLElement {
 		});
 
 		drinkButton.addEventListener('click', () => {
-			console.log(this.character.potions);
-			display('Drink a potion');
 			display(resolveDrinkPotion(this.character));
 			console.log('After', this.character);
 			this.render();
 		});
 
+		this.querySelector('#spell').addEventListener('click', () => {
+			display(resolveScroll(this.character));
+			this.render();
+		})
+
 		for (const [attribute, cssId] of [
 			['health', '#health'],
 			['maxHealth', '#max-health'],
-			['potions', '#potions']
+			['potions', '#potions'],
+			['scrolls', '#scrolls'],
+			['lockpicks', '#lockpicks'],
+
 		]) {
 			const display = component.querySelector(cssId);
 
